@@ -1,0 +1,65 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+#canvas-wrapper {
+  text-align: center;
+}
+
+canvas {
+  margin-top: 5px;
+  outline: 1px solid black;
+}
+
+.controls {
+  margin: auto;
+  display: flex;
+  width: 50%;
+  max-width: 300px;
+  margin: 25px auto;
+}
+
+button {
+  font-size: large;
+  width: 30%;
+}
+
+.numeric-input {
+  width: 70%;
+}
+
+#towers {
+  display: grid;
+  /* grid-template-areas: "left center right"; */
+}
+
+.piece {
+  position: relative;
+  text-align: center;
+  height: 30px;
+  margin: auto;
+  left: -33.33%;
+}
+
+#piece-0 {
+  position: relative;
+}
+#piece-1 {
+  position: relative;
+}
+
+@keyframes mymove {
+  from {
+    left: 0px;
+    top: 0px;
+  }
+  to {
+    left: 100px;
+    top: 100px;
+  }
+}

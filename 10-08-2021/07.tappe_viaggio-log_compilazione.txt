@@ -1,0 +1,117 @@
+tappe_viaggio.c - log di compilazione
+=====================================
+
+Questo file riporta i messaggi relativi agli errori di sintassi rilevati dal compilatore, e descrive le cause di tali messaggi. Ad ogni linea orizzontale corrisponde una nuova compilazione del file tappe_viaggio.c, nel frattempo modificato e salvato.
+Si noti che ogni messaggio d'errore inizia con il nome del file e il numero di riga in corrispondenza del quale viene segnalato l'errore.
+Il testo tra << >> commenta i messaggi del compilatore
+
+
+--------------------------------------------------------------------------------
+tappe_viaggio.c: In function ‘main’:
+tappe_viaggio.c:48: warning: format ‘%d’ expects type ‘int *’, but argument 2 has type ‘int’
+tappe_viaggio.c:58: warning: format ‘%d’ expects type ‘int *’, but argument 2 has type ‘int’
+tappe_viaggio.c:58: warning: format ‘%d’ expects type ‘int *’, but argument 3 has type ‘int’
+
+<< errore 1: mancanza del '&' in chiamate a scanf (un classico) >>
+
+tappe_viaggio.c:59: warning: statement with no effect
+tappe_viaggio.c:59: error: expected ‘;’ before ‘)’ token
+tappe_viaggio.c:59: error: expected expression before ‘=’ token
+
+<< errore 2: una parentesi tonda chiusa lasciata per errore prima del ']' alla fine della istruzione DurataTappe[TappaCorrente] = Minuti + 60*Ore; >>
+
+tappe_viaggio.c:71: error: ‘VelocitaMediaTappa’ undeclared (first use in this function)
+tappe_viaggio.c:71: error: (Each undeclared identifier is reported only once
+tappe_viaggio.c:71: error: for each function it appears in.)
+
+<< errore 3: avevo fatto una sostituzione globale del vecchio nome di variabile VelocitaMedia con il nuovo nome VelocitaMediaTappa, ma avevo già eseguito la sostituzione a mano nella dichiarazione: perciò la dichiarazione è diventata "float VelocitaMediaTappaTappa;" e nel seguito del programma la variabile VelocitaMediaTappa risultava non dichiarata >>
+
+tappe_viaggio.c:75: warning: too few arguments for format
+
+<< errore 4: avevo scritto "printf("La velocita' media nella tappa n°%d e' stata di %f km/h", VelocitaMediaTappa);" in cui compaiono due caratteri di conversione ma un solo argomento >>
+
+tappe_viaggio.c:41: warning: unused variable ‘VelocitaMediaTappaTappa’
+
+<< errore 5: vedi errori precedenti: il compilatore si è reso conto che la variabile che avevo definito per errore non era mai stata usata >>
+
+tappe_viaggio.c: At top level:
+tappe_viaggio.c:162: error: redefinition of ‘main’
+tappe_viaggio.c:25: error: previous definition of ‘main’ was here
+
+<< errore6: avevo lasciato in fondo al programma il main di un vecchio programma da cui avevo fatto un po' di copia-e-incolla >>
+
+
+--------------------------------------------------------------------------------
+<< dopo la correzione dell'errore 1 >>
+tappe_viaggio.c: In function ‘main’:
+tappe_viaggio.c:59: warning: statement with no effect
+tappe_viaggio.c:59: error: expected ‘;’ before ‘)’ token
+tappe_viaggio.c:59: error: expected statement before ‘)’ token
+tappe_viaggio.c:59: error: expected expression before ‘=’ token
+tappe_viaggio.c:71: error: ‘VelocitaMediaTappa’ undeclared (first use in this function)
+tappe_viaggio.c:71: error: (Each undeclared identifier is reported only once
+tappe_viaggio.c:71: error: for each function it appears in.)
+tappe_viaggio.c:75: warning: too few arguments for format
+tappe_viaggio.c:41: warning: unused variable ‘VelocitaMediaTappaTappa’
+tappe_viaggio.c: At top level:
+tappe_viaggio.c:162: error: redefinition of ‘main’
+tappe_viaggio.c:25: error: previous definition of ‘main’ was here
+
+
+--------------------------------------------------------------------------------
+<< dopo la correzione dell'errore 2 >>
+tappe_viaggio.c: In function ‘main’:
+tappe_viaggio.c:71: error: ‘VelocitaMediaTappa’ undeclared (first use in this function)
+tappe_viaggio.c:71: error: (Each undeclared identifier is reported only once
+tappe_viaggio.c:71: error: for each function it appears in.)
+tappe_viaggio.c:75: warning: too few arguments for format
+tappe_viaggio.c:41: warning: unused variable ‘VelocitaMediaTappaTappa’
+tappe_viaggio.c: At top level:
+tappe_viaggio.c:162: error: redefinition of ‘main’
+tappe_viaggio.c:25: error: previous definition of ‘main’ was here
+
+
+--------------------------------------------------------------------------------
+<< dopo la correzione dell'errore 3 >>
+tappe_viaggio.c: In function ‘main’:
+tappe_viaggio.c:75: warning: format ‘%d’ expects type ‘int’, but argument 2 has type ‘double’
+tappe_viaggio.c:75: warning: too few arguments for format
+tappe_viaggio.c: At top level:
+tappe_viaggio.c:162: error: redefinition of ‘main’
+tappe_viaggio.c:25: error: previous definition of ‘main’ was here
+
+
+--------------------------------------------------------------------------------
+<< dopo la correzione degli errori 4 e 5 non ho ottenuto messaggi di errore. Ciò
+indica corretta uscita dalla compilazione: è stato creato un programma 
+sintatticamente corretto ed eseguibile... ma (come vedremo) "sintatticamente
+corretto" non implica "correttamente funzionante"! >>
+
+
+--------------------------------------------------------------------------------
+<<<<<<<<<< prima esecuzione del programma appena compilato >>>>>>>>>>
+
+Inserisci i dati sul tuo viaggio.
+Numero delle tappe (min 1, max MAX_NUM_TAPPE)?  1
+Lunghezza della tappa n.1 [km]?  10
+Durata della tappa n.1 [ore:minuti]?  1:0
+
+La velocita' media nella tappa n.1 e' stata di 0.000000 km/h
+**************** ATTENZIONE: ***************
+******* velocita' fuori range ammesso ******
+******** controllare i dati inseriti *******
+La velocita' media nell'intero viaggio e' stata di 0.000000 km/h
+
+Perché questo strano (ed errato) risultato? Per via di un errore. Alla riga 72 avevo scritto l'espressione per il calcolo della velocità media nella tappa in questo modo:
+
+VelocitaMediaTappa = LunghezzaTappe[TappaCorrente]/DurataTappe[TappaCorrente]*60;
+
+Visto che LunghezzaTappe e DurataTappe sono array di INTERI, l'operazione / corrisponde alla divisione intera tra due elementi degli array. Ma il divisore è la durata della tappa in minuti (60) mentre il dividendo è la lunghezza in km (10): dunque 10/60 = 0! Moltiplicando tale risultato per 60 (fattore necessario per passare dalla velocità in km/minuto a quella in km/ora, si ottiene ancora 0.
+Per risolvere il problema basta modificare l'istruzione come segue:
+
+VelocitaMediaTappa = 60*LunghezzaTappe[TappaCorrente]/DurataTappe[TappaCorrente];
+
+In questo modo PRIMA si moltiplica per 60 e poi si fa la divisione intera. Ciò elimina il problema.
+Il programma è ora corretto.
+
+
