@@ -19,6 +19,8 @@ o nulli letti da tastiera e restituisce la testa di tale lista.
 L'input da tastiera termina quando l'utente
 inserisce un numero negativo */
 
+TipoElemento *RiempiListaDue(void);
+
 void StampaLista(TipoElemento *Testa); /* stampa a schermo gli interi contenuti nella
 lista avente testa Testa */
 
@@ -28,7 +30,7 @@ altrimenti restituisce false */
 
 int main()
 {
-  TipoElemento *lista = RiempiLista();
+  TipoElemento *lista = RiempiListaDue();
   StampaLista(lista);
   ContieneDoppioni(lista) ? printf("Contiene doppioni\n") : printf("Non contiene doppioni\n");
 }
@@ -55,6 +57,34 @@ TipoElemento *RiempiLista(void)
     scanf("%d", &data);
   }
   newNode->next = NULL;
+  return head;
+}
+
+TipoElemento *RiempiListaDue(void)
+{
+  int data;
+  TipoElemento *head, *currNode;
+  head = NULL;
+
+  scanf("%d", &data);
+
+  while (data >= 0)
+  {
+    if (head == NULL)
+    {
+      head = malloc(sizeof(TipoElemento));
+      head->data = data;
+      currNode = head;
+    }
+    else
+    {
+      currNode->next = malloc(sizeof(TipoElemento));
+      currNode->next->data = data;
+      currNode = currNode->next;
+    }
+    scanf("%d", &data);
+  }
+  currNode->next = NULL;
   return head;
 }
 
