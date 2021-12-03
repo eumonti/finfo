@@ -34,14 +34,11 @@ Node *getSequence(char *fileName)
   if ((filePtr = fopen(fileName, "r")) == NULL)
     return NULL;
 
-  // fseek(filePtr, 0, SEEK_END);
-  // int size = ftell(filePtr);
-
-  // if (0 == size)
-  // {
-  //   return NULL;
-  // }
-
+  fseek(filePtr, 0, SEEK_END);
+  unsigned long len = (unsigned long)ftell(filePtr);
+  if (len == 0)
+    return NULL;
+  rewind(filePtr);
   while (!feof(filePtr))
   {
     int data;
