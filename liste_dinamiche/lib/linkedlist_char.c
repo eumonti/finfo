@@ -1,4 +1,4 @@
-#include "linkedlist.h"
+#include "linkedlist_char.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,7 +6,7 @@ void printList(Node *list)
 {
   while (list != NULL)
   {
-    printf("%d ", list->data);
+    printf("%c ", list->data);
     list = list->next;
   }
   printf("\n");
@@ -39,10 +39,9 @@ Node *getSequence(char *fileName)
   if (len == 0)
     return NULL;
   rewind(filePtr);
-  while (!feof(filePtr))
+  char data;
+  while ((data = fgetc(filePtr)) != EOF)
   {
-    int data;
-    fscanf(filePtr, "%d", &data);
     curr = newNode(data);
     if (first)
     {

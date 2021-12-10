@@ -1,4 +1,4 @@
-#ifndef LISKEDLIST_H
+#ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
 typedef struct _node
