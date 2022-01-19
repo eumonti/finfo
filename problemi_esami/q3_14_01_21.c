@@ -7,31 +7,61 @@
 // Altrimenti:
 //    Stampa avviso
 //    Restituisci 0
+
+void printString(char *string, int len)
+{
+  int i;
+  for (i = 0; i < len; i++)
+  {
+    printf("%c", string[i]);
+  }
+  printf(".\n");
+}
+
+int checkPeriodP(char *string, int P, int len)
+{
+  int i;
+  for (i = 0; i < len - P; i++)
+  {
+    if (string[i] != string[i + P])
+    {
+      return 0;
+    }
+  }
+  return 1;
+}
+
 int fun(char *string)
 {
   int len;
-  int p;
-  int i;
+  int P;
+  int iniz;
 
   len = 0;
   while (string[len] != '\0')
-  {
     len++;
-  }
-  printf("%d\n", len);
 
-  for (p = 0; p < len / 2; p++)
+  for (iniz = 0; iniz < len; iniz++)
   {
-    for(i = 0; i < len - p; i++)
+    for (P = 1; P <= (len - iniz) / 2; P++)
     {
-      if(string[i] != string[i + p])
+      if (checkPeriodP(string + iniz, P, len - iniz))
       {
-        
+        // Found
+        printf("Sequenza ripetuta: ");
+        printString(string + iniz, P);
+        return P;
       }
+      // Go forth
     }
   }
+  printf("Non trovata periodicità.\n");
+  return 0;
 }
 
 int main()
 {
+  char *string = "quipartepartepart";
+  int result = fun(string);
+  result ? printf("Stringa periodica con P=%d.\n", result) : printf("Stringa non periodica.\n");
 }
