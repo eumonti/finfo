@@ -1,5 +1,5 @@
 #include <stdio.h>
-// #include "../lib/linkedlist_int.h"
+#include "lib/linkedlist_int.h"
 
 // prev->curr->next->(next->next)
 // Swap curr with next
@@ -8,52 +8,80 @@
 // Bubble sort
 
 // 20->12->13->8->4->6->2->3->1->NULL
-// void ordina(Node **pList)
-// {
-//   Node *curr1, *curr2;
-//   while(curr1 != NULL)
-//   {
-//     while(curr2 != NULL)
-//     {
-//       if(curr1->data > curr2->data)
-//       {
-//         // Swap
-//         curr2->next
-//       }
-//     }
-//   }
 
-// }
-
-void bubbleSort(int *arr, int len)
+// Shitty way
+void ordina(Node **pList)
 {
-  int tmp;
-  int i, j;
-  for (i = 0; i < len; i++)
+  Node *curr1, *curr2;
+  Node *prev, *next;
+  Node *endNode;
+  endNode = NULL;
+  for (curr1 = *pList; curr1 != NULL; curr1 = curr1->next)
   {
-    for (j = 0; j < len - i; j++)
+    prev = NULL;
+    curr2 = *pList;
+    while (curr2->next != endNode)
     {
-      if (arr[j] > arr[j + 1])
+      if (curr2->data > curr2->next->data)
       {
-        tmp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = tmp;
+        if (prev == NULL) // First node
+        {
+          next = curr2->next;
+          curr2->next = next->next;
+          next->next = curr2;
+          prev = next;
+          *pList = next;
+        }
+        else
+        {
+          next = curr2->next;
+          prev->next = next;
+          curr2->next = next->next;
+          next->next = curr2;
+          prev = next;
+        }
+      }
+      else
+      {
+        prev = curr2;
+        curr2 = curr2->next;
       }
     }
+    endNode = curr2;
+  }
+}
+
+// Better way
+void ordina2(Node **pList)
+{
+  Node *curr1, **pCurr2;
+  Node *next;
+  Node *endNode;
+  endNode = NULL;
+  for (curr1 = *pList; curr1 != NULL; curr1 = curr1->next)
+  {
+    pCurr2 = pList;
+    while ((*pCurr2)->next != endNode)
+    {
+      if ((*pCurr2)->data > (*pCurr2)->next->data)
+      {
+        next = (*pCurr2)->next;
+        (*pCurr2)->next = next->next;
+        next->next = (*pCurr2);
+        *pCurr2 = next;
+      }
+      else
+      {
+        pCurr2 = &(*pCurr2)->next;
+      }
+    }
+    endNode = *pCurr2;
   }
 }
 
 int main()
 {
-  // Node *list = getSequence("sequence2.txt");
-  // ordina(&list);
-  // printList(list);
-  int arr[] = {20, 12, 13, 8, 4, 6, 2, 3, 1};
-  int len = sizeof(arr) / sizeof(arr[0]);
-  bubbleSort(arr, len);
-  for (int i = 0; i < len; i++)
-  {
-    printf("%d ", arr[i]);
-  }
-  printf("\n");
+  Node *list = getSequence("sequence2.txt");
+  ordina2(&list);
+  printList(list);
 }
