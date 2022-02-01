@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "lib/linkedlist.h"
+#include "lib/linkedlist_int.h"
 
 int stessePosizioni(Node *lista1, Node *lista2)
 {
