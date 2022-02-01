@@ -9,7 +9,7 @@
         "-fdiagnostics-color=always",
         "-g",
         "${file}",
-        "${workspaceFolder}/lib/linkedlist.c",
+        "${workspaceFolder}/lib/linkedlist_int.c",
         "-o",
         "${workspaceFolder}/bin/${fileBasenameNoExtension}"
       ],
