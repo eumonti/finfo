@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lib/linkedlist.h"
+#include "lib/linkedlist_int.h"
 
 typedef enum
 {
