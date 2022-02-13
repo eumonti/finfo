@@ -12,7 +12,7 @@ typedef struct _node
 // La x del drone è sempre negativa
 Node *fun(int arr[DIM], float x, float z)
 {
-  Node *pList = NULL;
+  Node *pList;
   Node **ppCurr = &pList;
   int i;
   int j;
@@ -39,6 +39,7 @@ Node *fun(int arr[DIM], float x, float z)
       ppCurr = &((*ppCurr)->next);
     }
   }
+  *ppCurr = NULL;
   return pList;
 }
 

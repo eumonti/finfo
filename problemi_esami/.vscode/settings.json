@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "linkedlist.h": "c",
-    "linkedlist_int.h": "c"
+    "linkedlist_int.h": "c",
+    "q3_09_09_19.C": "cpp"
   }
 }

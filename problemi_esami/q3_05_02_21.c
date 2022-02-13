@@ -58,30 +58,36 @@ void printArr(int *arr, int len)
   printf("\n");
 }
 
-int fun(Node *list)
+typedef Node *List;
+
+int fun(List list)
 {
-  Node *pDiffList;
-  Node **ppCurrNode;
+  List diffList;
+  Node **pCurrNode;
   Node *cursA, *cursB;
-  pDiffList = NULL;
-  ppCurrNode = &pDiffList;
+  int currCount;
+  int maxCount = -1;
+  int result;
+
+  diffList = NULL;
+  pCurrNode = &diffList;
   for (cursA = list; cursA != NULL; cursA = cursA->next)
   {
     for (cursB = cursA->next; cursB != NULL; cursB = cursB->next)
     {
-      // Consider the difference and add it to the list
-      *ppCurrNode = malloc(sizeof(Node));
-      (*ppCurrNode)->data = cursB->data - cursA->data;
-      ppCurrNode = &((*ppCurrNode)->next);
+      // Aggiungi la differenza a diffList
+      *pCurrNode = malloc(sizeof(Node));
+      (*pCurrNode)->data = cursB->data - cursA->data;
+      pCurrNode = &((*pCurrNode)->next);
     }
   }
-  *ppCurrNode = NULL;
+  *pCurrNode = NULL;
 
-  // Iterate trough diffList and find the element that appears with the most frequency
-  int currCount = 0;
-  int maxCount = -1;
-  int result;
-  for (cursA = pDiffList; cursA != NULL; cursA = cursA->next)
+  // Cerca l'elemento più basso in diffList
+  currCount = 0;
+  maxCount = -1;
+  result;
+  for (cursA = diffList; cursA != NULL; cursA = cursA->next)
   {
     for (cursB = cursA->next; cursB != NULL; cursB = cursB->next)
     {
