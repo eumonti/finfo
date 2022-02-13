@@ -1,0 +1,46 @@
+
+
+
+Capitolo 1
+
+eRA una notte scura e tempestosa.
+Lo studente era chino sulla tastiera del PC. Le dita gli dolevano per il lungo sforzo di digitazione.
+Particolarmente dolente era il mignolo della mano destra, utilizzato per premere il tasto "backspace".
+
+
+
+Capitolo 2
+
+1249 volte quel tasto era stato premuto durante quella lunga, estenuante sessione di programmazione.
+Ogni idea, per quanto brillante al suo concepimento, appariva immediatamente sbagliata una volta sullo schermo, trasformata in codice C. Ogni programma scritto aveva fatto immediatamente la stessa fine: cancellato.
+Quando, resistendo alla tentazione di cancellare tutto, lo studente aveva provato a compilare, il risultato era stato sempre lo stesso: una sfilza di errori.
+Cominciava a scoraggiarsi.
+
+
+
+Capitolo 3
+
+aH-AAAaaaah!! L'esclamazione -più precisamente, l'urlo- echeggiò per tutto l'appartamento (fortuna che non c'era nessun altro... erano al cinema, vigliacchi).
+
+
+
+Capitolo 4
+
+l'ISPIRAZIONE!
+Rapide come cobra all'attacco, le sue dita sembravano danzare sui tasti. Complesse ed eleganti linee di codice comparivano quasi da sole sullo schermo. 
+Linea dopo linea, il programma compariva. Era bellissimo!
+
+
+
+Capitolo 5
+
+cOMPILAZIONE: il momento decisivo.
+Il comando di compilazione, all'inizio tanto astruso, era ora familiare al punto che da un pezzo lo studente lo conosceva a memoria. Digitarlo richiese solo un attimo.
+
+
+
+Capitolo 6
+
+<enter>
+Successo! Si compila! Finalmente!!
+Retrospettivamente, era ovvio dove fosse l'errore. Adesso sembrava tutto semplice, chiaro, naturale. Non l'avrebbe più ripetuto. Mai più.
