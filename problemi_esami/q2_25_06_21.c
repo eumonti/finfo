@@ -59,6 +59,8 @@ void InserisciInOrdine(Lista *pList, int num)
 
   if ((*pList)->prox == NULL)
   {
+    new = malloc(sizeof(Node));
+    new->info = num;
     (*pList)->prox = new;
     new->prec = *pList;
     new->prox = NULL;
