@@ -23,12 +23,14 @@ int Salta(Scacchiera board)
         if (j < DIM - 2 && board[i + 1][j + 1] == AVVERSARIO && board[i + 2][j + 2] == VUOTO)
         {
           board[i][j] = VUOTO;
+          board[i + 1][j + 1] = VUOTO;
           board[i + 2][j + 2] = GIOCATORE;
           return 1;
         }
         if (j >= 2 && board[i + 1][j - 1] == AVVERSARIO && board[i + 2][j + 2] == VUOTO)
         {
           board[i][j] = VUOTO;
+          board[i + 1][j - 1] = VUOTO;
           board[i + 2][j - 2] = GIOCATORE;
           return 1;
         }
@@ -36,6 +38,31 @@ int Salta(Scacchiera board)
     }
   }
   return 0;
+}
+
+void printBoard(Scacchiera s)
+{
+  int i, j;
+  for (int i = DIM - 1; i >= 0; i--)
+  {
+    for (int j = 0; j < DIM; j++)
+    {
+      switch (s[i][j])
+      {
+      case 1:
+        printf("B\t");
+        break;
+      case -1:
+        printf("N\t");
+        break;
+
+      default:
+        printf("-\t");
+        break;
+      }
+    }
+    printf("\n\n");
+  }
 }
 
 int main()
@@ -48,14 +75,7 @@ int main()
                   {0, 0, -1, 0, 1, 0, 1, 0},
                   {0, 0, 0, -1, 0, -1, 0, 0},
                   {0}};
-  printf("%d\n\nBoard:\n", Salta(s));
-
-  for (int i = 0; i < DIM; i++)
-  {
-    for (int j = 0; j < DIM; j++)
-    {
-      printf("%d\t", s[i][j]);
-    }
-    printf("\n");
-  }
+  printBoard(s);
+  printf("%d\n\n", Salta(s));
+  printBoard(s);
 }
